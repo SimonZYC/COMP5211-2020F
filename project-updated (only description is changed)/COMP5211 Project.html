@@ -1,0 +1,642 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>COMP5211 Project</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width%3D%2216%22 height%3D%2216%22 viewBox%3D%220 0 16 16%22 fill%3D%22none%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect width%3D%2216%22 height%3D%2216%22 fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath d%3D%22M6.71429 12.2852L14 4.9995L12.7143 3.71436L6.71429 9.71378L3.28571 6.2831L2 7.57092L6.71429 12.2852Z%22 fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width%3D%2216%22 height%3D%2216%22 viewBox%3D%220 0 16 16%22 fill%3D%22none%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect x%3D%220.75%22 y%3D%220.75%22 width%3D%2214.5%22 height%3D%2214.5%22 fill%3D%22white%22 stroke%3D%22%2336352F%22 stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="65aa0994-d49c-42cc-9bbe-479275977658" class="page sans"><header><h1 class="page-title">COMP5211 Project</h1></header><div class="page-body"><h1 id="0b57c6b9-4c58-4745-9f13-5d0fe76ccfab" class="">Capture the Flag Competition</h1><p id="90d6c4af-e84c-4162-983c-51ac22c31644" class="">This project is modified from the Berkeley AI <a href="http://ai.berkeley.edu/contest.html">Pacman game</a>. In this project, you will implement a Pacman agent and compete with other classmates on the capture the flag game. In the game, your Pacman agent needs to eat a food dot assigned and avoids collision with other agents.</p><p id="b36ff20d-bd25-4bb5-901c-057e478ee01a" class="">You can find the skeleton code in <strong>project.zip</strong>.</p><h1 id="1e9412a4-0078-481f-bfbb-e1b040d02d31" class="">Game Rules</h1><h3 id="1645364d-0410-4d87-acf1-c0dc277eee2d" class="">Layout</h3><p id="a2afe8f6-4cf3-45c5-a6da-ae2e54969a59" class="">Two agents are placed randomly on an 8 by 8 gameboard. Each agent needs to navigate to a randomly generated food dot. The initial (Manhattan) distance between the pair of agents is at least 3 cells. The initial distance between the agent and its assigned food dot is at least 5 cells. </p><h3 id="5f8a16a2-a486-422f-a499-886ab9605fa2" class="">Scoring</h3><p id="8162a602-64df-430d-9a7a-8b8be41bc148" class="">An agent can earn 1 point if it reaches its goal with the minimum number of steps <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span></span><span>﻿</span></span>, i.e. the agent walks on the shortest path. Otherwise, it earns <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>m</mi><mi>s</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{m}{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span>﻿</span></span> points if it reaches the goal with <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span></span><span>﻿</span></span> steps. If the agent fails to reach the goal within the time limit, it gets 0 scores. Besides, if the agent collides with the other agent, both agents lose immediately and get -1 scores. <b>Note that a collision can happen even if the agent has reached the goal.</b> The same penalty will be applied.  <a href="#demos">Demos</a>.</p><figure id="2f766229-ffbf-47ab-9746-357b5a7720a7" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false">(</mo><mtext>agent </mtext><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi mathvariant="normal">/</mi><mi>s</mi><mspace width="1em"/></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>if </mtext><mstyle scriptlevel="0" displaystyle="false"><mi>s</mi><mo>&lt;</mo></mstyle><mtext>time limit</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mspace width="1em"/></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>if </mtext><mstyle scriptlevel="0" displaystyle="false"><mi>s</mi><mo>≥</mo></mstyle><mtext>time limit</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>1</mn><mspace width="1em"/></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>if collision occurs</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\mathrm{score}(\text{agent } i)=\begin{cases}m/s\quad &amp;\text{if $s&lt;$time limit}\\0\quad &amp;\text{if $s\geq$time limit} \\-1 \quad &amp;\text{if collision occurs}\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">s</span><span class="mord mathrm">c</span><span class="mord mathrm">o</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span></span><span class="mopen">(</span><span class="mord text"><span class="mord">agent </span></span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:4.32em;vertical-align:-1.9099999999999997em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35002em;"><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.19499em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-2.20499em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.15001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.2950099999999996em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.30501em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8500199999999998em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:1em;"></span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mspace" style="margin-right:1em;"></span></span></span><span style="top:-1.5300000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span><span class="mspace" style="margin-right:1em;"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.9099999999999997em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">time limit</span></span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">time limit</span></span></span></span><span style="top:-1.5300000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if collision occurs</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.9099999999999997em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><a name="states"></a><h3 id="35d21166-1ad4-40d2-a8dd-c362fffe8ee6" class="">Observations</h3><p id="90dd2698-bcb4-4c89-9f49-3be2f7563c01" class="">In each round, the agent receives 5 pieces of information: </p><div id="0e650c15-e373-4e15-89e4-9913dbcedd77" class="column-list"><div id="cecb349f-651b-4bfe-a425-0006fb278548" style="width:75%" class="column"><p id="eb8a47f1-1a88-429e-931a-8e3b9a1559fc" class=""><code>position</code>: the current position of agent
+<code>target</code>: a list of the position of the target food dot 
+            (either a list of one item or an empty list)
+<code>sensor</code>: a list of 8 sensor values <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>s</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>s</mi><mn>7</mn></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[s_0,s_1,...,s_7]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span> for wall detection
+            (<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>j</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">s_j=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span> if there is a wall in that direction)
+<code>radar</code>: a list of the position of other agents within 3 cells
+<code>score</code>: the score obtained so far</p></div><div id="3f3da72a-5662-4691-810f-3aaddd085f1d" style="width:25.000000000000007%" class="column"><figure id="1a98ae8b-d7db-40dd-b874-f2608ebfeb8a" class="image"><a href="COMP5211 Project/pacman_(1).svg"><img style="width:144px" src="COMP5211 Project/pacman_(1).svg"/></a></figure><p id="06223165-69e5-4a9a-9aaf-789969ad40d7" class="">
+</p></div></div><h3 id="95c9a6a8-188c-48a1-9776-10b51d738413" class="">Winning</h3><p id="6a4a1010-e576-421b-8a7e-c940a4afaa19" class="">In a match (your agent vs another agent), we will play 10 games. The team with the higher total score over the 10 games will win. Your agent will compete in multiple matches. In each match, you get 3 points for a win, 1 point for a tie, 0 point for a loss. The final rank in a tournament depends on the total points.</p><h3 id="7d2e6fa6-f850-4e1e-899f-2813714df3c5" class="">Constraints</h3><p id="9f5a0139-d5b9-4232-896c-74e69dfc7e94" class=""><strong>Computation Time </strong>The games will be run on the TA&#x27;s laptop with an i7-6500U CPU (no GPUs provided). You are required to finish each of your moves within 1 second. However, there will be an initial start-up allowance of 15 seconds (use the <code>registerInitialState</code> function). Agents that compute during the opponent&#x27;s turn will be disqualified. In particular, any form of multi-threading is disallowed. </p><p id="690b95de-0790-4575-af34-707925e61eb6" class=""><strong>Environments </strong>Different from the previous assignments, which we encourage implementing from scratch with Python 2.7. This project will be run on the <strong>Python 3.7</strong> environment. The skeleton code itself does not require additional packages. However, you are allowed to use the following packages:</p><pre id="478da813-b3df-4ddf-8cb7-d17b39d15dae" class="code"><code>numpy==1.18.5
+pandas==1.1.3
+tensorflow==2.3.1
+torch==1.6.0
+torchvision==0.7.0</code></pre><p id="019b0ef5-162c-4cb1-84e9-ebd50fc1e5da" class="">Since we will run your agent with other classmates&#x27; agents in the same environment, please tie to the environment provided. If you find other packages useful, you may suggest it to the TA. We will try to accommodate your requests as long as it does not conflict with the mentioned environment. </p><h1 id="71ee9d38-b7ba-4f16-92a4-71b5658102f4" class="">Getting started</h1><p id="1593e7c3-8eb3-469a-bb0a-54d55ffa973a" class="">By default, you can run a game with the simple <code>baselineTeam</code> that we have provided:</p><p id="94c68722-8f89-4cff-92c9-f3154f92b4f4" class=""><code>python capture.py</code></p><p id="9deeff3a-44f1-4cbe-a763-13f0eea801ca" class="">A wealth of options are available to you:</p><p id="4bd6b762-3927-4b27-97ad-51b681dcd0ca" class=""><code>python capture.py --help</code></p><p id="1223a60f-4605-4e68-8cab-3dfa67d1dbbd" class="">There are multiple slots for agents. Agents 0 is on the red team, and agent 1 is on the blue team. We implemented an example in the <code>baselineTeam</code>. It is chosen by default as both the red and blue teams. You can obtain the default setting by:</p><p id="4310668b-e42a-4940-9e4f-629ddaf37945" class=""><code>python capture.py --agents baselineTeam baselineTeam</code></p><p id="aae280ea-862e-4c06-a3ca-20dd6aea977b" class="">which specifies that the agents 0 and 1 are both created from <code>baselineTeam.py</code>. </p><p id="9d72910d-4c2e-434e-9a76-e24e398f0b5e" class="">To control one of the two agents with the keyboard, pass the appropriate option:</p><p id="f1a260de-0bea-441f-883e-165a5270fa81" class=""><code>python capture.py --keys0</code> </p><p id="b3408677-ef9e-4e4a-9216-2b94e4d65cfc" class=""><code>python capture.py --keys0 --keys1</code> </p><p id="8f3e493d-e010-4d69-b778-92479982dbe4" class="">You can control the first agent with <em>w, a, s, d, </em>and the second agent with i<em>, j, k, l.</em></p><h3 id="e50d7f71-aba9-4724-a2d5-92800f70fc36" class=""><strong>Layout</strong></h3><p id="a7752a61-47cc-4d89-826c-5c24fc2b19f0" class="">By default, all games are run on the <code>defaultcapture</code> layout. To test your agent on other layouts, use the <code>-l</code> option. In particular, you can generate random layouts by specifying <code>RANDOM[seed]</code>. For example, <code>-l RANDOM13</code> will use a map randomly generated with seed 13.</p><h3 id="53813bf9-40c0-4f1e-b7f7-2348acc2a452" class=""><strong>Recordings</strong></h3><p id="e30a2431-b95f-4da3-90d1-55a8eb63ac9a" class="">You can record local games using the <code>--record</code> option, which will write the game history to a file named by the time the game was played. You can replay these histories using the <code>--replay</code> option and specifying the file to replay.</p><h1 id="d7d556d2-d35a-4d45-bff8-e5121e3e4140" class="">Designing Agent</h1><h3 id="84503cc0-b98c-4dc1-9640-7fd245a55109" class=""><strong>Baseline Team</strong></h3><p id="f107cf27-4ebc-4d65-856c-2a585b26fe2f" class="">To kickstart your agent design, we have provided you with a baseline agent, defined in <code>baselineTeam.py</code>. The agent is quite naive. It goes straight in one direction, turns once, then goes straight to the goal. There is quite a chance of collision if both agents employ the same strategies. Please take the baseline agent as a reference and design a better agent!</p><h3 id="74c1dcd0-0b9d-4d69-8885-676e9ad5bbc2" class=""><strong>File Format</strong></h3><p id="5c669153-bc45-4bbd-a613-4261912c6d2d" class="">You should include your agent in a file of the same format as in <code>myTeam.py</code>. You should submit your work as <code>[studentID].py</code> (e.g. 12345678.py). Your agents must be completely contained in this one file.</p><h3 id="c00eee22-9a9c-4d05-bb1f-e13ea7c22ad6" class=""><strong>Interface</strong></h3><p id="25ce4e41-d75d-4d6d-b699-a9b5f78b58b8" class="">In <code>myTeam.py</code>, we provide a minimum implementation. Your agent should be a subclass of the <code>CaptureAgent</code>. You can use the <code>registerInitialState</code> method to initialize your agent and <code>chooseAction</code> method to decide which action your agent would take. Both methods take on an argument <code>state</code> which provides information mentioned <a href="#states">previously</a>.<h1 id="4a819add-8b3d-417e-a9c4-b0615a268d9a" class="">Submissions</h1><p id="b1f1db45-e9cb-418b-8662-811d4240782f" class=""><strong>Codes (80%): </strong>We will hold the tournament multiple times. At each Friday, we will collect your <code>[studentID].py</code> from canvas. Your agent will compete with the agents from 3 classmates and 2 agents made by your TA. The results will be announced earliest in the following Monday. Your score awarded for the tournament will be <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>10</mn><mo>+</mo><mn>5</mn><mo>⋅</mo><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">s</mi></mrow><mo separator="true">,</mo><mn>80</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\min(10+5\cdot \mathrm{points},80)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm">t</span><span class="mord mathrm">s</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span> where <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">\mathrm{points}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8623000000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm">t</span><span class="mord mathrm">s</span></span></span></span></span></span><span>﻿</span></span> is the total points in the five matches. Your final score for this part will be the best results over the multiple tournaments. 
+<b>Bonus:</b> We will hold a finale where all agents compete in the same gameboard. The winner will get 20% bonus scores.</p><p id="4bbb6897-bdbd-4b31-8772-71ac1801db6f" class=""><strong>Reports (20%):</strong>  You are required to submit a report describing the strategy of your agent and the models you used, e.g. search algorithm, reinforcement learning. Submit the report as <code>report.pdf</code>.</p></p><a name="demos"></a><h1 id="3ccc8988-039e-4400-a488-0164ad529f2d" class="">Demos</h1><p id="5280afc9-5e81-4f6d-8b78-8cf4e5c4fa41" class="">We used gameboards with different shapes for illustration purposes.</p><p id="64632475-969f-4682-8cf6-af607c78ad0d" class="">
+</p><p id="7e53acef-5dc4-423a-bcfd-b7aff33d089d" class="">
+</p><div id="5f8fc4bc-5c48-4de2-8473-ee94a8f23580" class="column-list"><div id="2bff9b88-8fef-40b2-adf7-296c9b572487" style="width:50%" class="column"><figure id="980b36ae-5801-4264-8677-5ceeace8a685" class="image"><a><img style="width:368px" src="COMP5211 Project/success.gif"/></a><figcaption>Both agents succeeded to reach the goal.</figcaption></figure></div><div id="83876ad8-5d06-4eff-8dfd-5c377c90fa70" style="width:50%" class="column"><figure id="83c0c8ce-6f2e-4ab6-af91-b2acaa80d5c8" class="image"><a><img style="width:368px" src="COMP5211 Project/timeout.gif"/></a><figcaption>The blue agent failed to reach the goal.</figcaption></figure></div></div><div id="0e2bbd4a-7c99-42b6-837e-be1d38fa3bfc" class="column-list"><div id="a03e5f2b-b2bc-40c2-8b17-a6a7cd58ed27" style="width:50%" class="column"><figure id="5367bb07-d794-4e5d-9d6e-c23d98fd4f5d" class="image"><a><img style="width:480px" src="COMP5211 Project/collide_in_mid_way.gif"/></a><figcaption>The agents received a penalty for the collision. </figcaption></figure></div><div id="06467676-fe34-40cc-8920-240e6cdb860a" style="width:50%" class="column"><figure id="722546e1-8392-440d-97bd-acebf4a12237" class="image"><a><img style="width:368px" src="COMP5211 Project/collide_on_finished_agent.gif"/></a><figcaption>Collisions can occur even after an agent has reached the goal.</figcaption></figure><p id="d51df5f9-f43f-40d1-be1a-dfefd3cd7086" class="">
+</p></div></div><div id="5f8fc4bc-5c48-4de2-8473-ee94a8f23580" class="column-list"><div id="2bff9b88-8fef-40b2-adf7-296c9b572487" style="width:100%" class="column"><figure id="980b36ae-5801-4264-8677-5ceeace8a685" class="image"><a><img style="width:368px" src="COMP5211 Project/finale.gif"/></a><figcaption>We will hold a finale for all agents to compete in the same board.</figcaption></figure></div></div></div></article></body></html>
